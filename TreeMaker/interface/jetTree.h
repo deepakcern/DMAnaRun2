@@ -243,37 +243,38 @@ class jetTree  : public baseTree{
   std::vector<float> ECF_1_2_10;
 
   // For CA15 double b-tagger and ECFs: ends here
-  std::vector<float> z_ratio_t
-  std::vector<float> trackSipdSig_3_t
-  std::vector<float> trackSipdSig_2_t
-  std::vector<float> trackSipdSig_1_t
-  std::vector<float> trackSipdSig_0_t
-  std::vector<float> trackSipdSig_1_0_t
-  std::vector<float> trackSipdSig_0_0_t
-  std::vector<float> trackSipdSig_1_1_t
-  std::vector<float> trackSipdSig_0_1_t
-  std::vector<float> trackSip2dSigAboveCharm_0_t
-  std::vector<float> trackSip2dSigAboveBottom_0_t
-  std::vector<float> trackSip2dSigAboveBottom_1_t
-  std::vector<float> tau1_trackEtaRel_0_t
-  std::vector<float> tau1_trackEtaRel_1_t
-  std::vector<float> tau1_trackEtaRel_2_t
-  std::vector<float> tau0_trackEtaRel_1_t
-  std::vector<float> tau0_trackEtaRel_2_t
-  std::vector<float> tau_vertexMass_0_t
-  std::vector<float> tau_vertexEnergyRatio_0_t
-  std::vector<float> tau_vertexDeltaR_0_t
-  std::vector<float> tau_flightDistance2dSig_0_t
-  std::vector<float> tau_vertexMass_1_t
-  std::vector<float> tau_vertexEnergyRatio_1_t
-  std::vector<float> tau_flightDistance2dSig_1_t
-  std::vector<float> jetNTracks_t
-  std::vector<float> nSV_t
-  std::vector<float> massPruned_t
-  std::vector<float> flavour_t
-  std::vector<float> nbHadrons_t
-  std::vector<float> ptPruned_t
-  std::vector<float> etaPruned_t
+  std::vector<float> z_ratio_t;
+  std::vector<float> trackSipdSig_3_t;
+  std::vector<float> trackSipdSig_2_t;
+  std::vector<float> trackSipdSig_1_t;
+  std::vector<float> trackSipdSig_0_t;
+  std::vector<float> trackSipdSig_1_0_t;
+  std::vector<float> trackSipdSig_0_0_t;
+  std::vector<float> trackSipdSig_1_1_t;
+  std::vector<float> trackSipdSig_0_1_t;
+  std::vector<float> trackSip2dSigAboveCharm_0_t;
+  std::vector<float> trackSip2dSigAboveBottom_0_t;
+  std::vector<float> trackSip2dSigAboveBottom_1_t;
+  std::vector<float> tau1_trackEtaRel_0_t;
+  std::vector<float> tau1_trackEtaRel_1_t;
+  std::vector<float> tau1_trackEtaRel_2_t;
+  std::vector<float> tau0_trackEtaRel_0_t;
+  std::vector<float> tau0_trackEtaRel_1_t;
+  std::vector<float> tau0_trackEtaRel_2_t;
+  std::vector<float> tau_vertexMass_0_t;
+  std::vector<float> tau_vertexEnergyRatio_0_t;
+  std::vector<float> tau_vertexDeltaR_0_t;
+  std::vector<float> tau_flightDistance2dSig_0_t;
+  std::vector<float> tau_vertexMass_1_t;
+  std::vector<float> tau_vertexEnergyRatio_1_t;
+  std::vector<float> tau_flightDistance2dSig_1_t;
+  std::vector<float> jetNTracks_t;
+  std::vector<float> nSV_t;
+  std::vector<float> massPruned_t;
+  std::vector<float> flavour_t;
+  std::vector<float> nbHadrons_t;
+  std::vector<float> ptPruned_t;
+  std::vector<float> etaPruned_t;
 
 
   //jet  Hbb tagger for fat and add jet
