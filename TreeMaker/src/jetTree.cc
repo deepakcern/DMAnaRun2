@@ -661,6 +661,7 @@ jetTree::Fill(const edm::Event& iEvent, edm::EventSetup const& iSetup){
       ECF_2_3_10.push_back(p_jet->get_ecf(2,3,1)) ;
       ECF_1_2_10.push_back(p_jet->get_ecf(1,2,1));
       z_ratio_t.push_back(z_ratio_);
+      SubJet_csv_t..push_back(SubJet_csv_);
       trackSipdSig_3_t.push_back(trackSipdSig_3_);
       trackSipdSig_2_t.push_back(trackSipdSig_2_);
       trackSipdSig_1_t.push_back(trackSipdSig_1_);
@@ -1079,6 +1080,7 @@ jetTree::SetBranches(){
       AddBranch(&ECF_2_3_10, "ECF_2_3_10");
       AddBranch(&ECF_1_2_10, "ECF_1_2_10");
       AddBranch(&z_ratio_t, "_z_ratio");
+      AddBranch(&SubJet_csv_t,"_SubJet_csv");
       AddBranch(&trackSipdSig_3_t, "_trackSipdSig_3" );
       AddBranch(&trackSipdSig_2_t , "_trackSipdSig_2");
       AddBranch(&trackSipdSig_1_t, "_trackSipdSig_1" );
@@ -1264,6 +1266,7 @@ jetTree::Clear(){
   ECF_2_3_10.clear();
   ECF_1_2_10.clear();
   z_ratio_t.clear();
+  SubJet_csv_t.clear();
   trackSipdSig_3_t.clear();
   trackSipdSig_2_t.clear();
   trackSipdSig_1_t.clear();

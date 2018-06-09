@@ -244,6 +244,7 @@ class jetTree  : public baseTree{
 
   // For CA15 double b-tagger and ECFs: ends here
   std::vector<float> z_ratio_t;
+  std::vector<float> SubJet_csv_t;
   std::vector<float> trackSipdSig_3_t;
   std::vector<float> trackSipdSig_2_t;
   std::vector<float> trackSipdSig_1_t;
