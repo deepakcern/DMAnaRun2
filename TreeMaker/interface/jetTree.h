@@ -9,7 +9,7 @@
   Updated by: Raman Khurana
   Date      : 27 Jan 2017
   Adding CA15 doble b-tagger
-  ECF variables 
+  ECF variables
 */
 
 
@@ -50,11 +50,11 @@
 #include "DelPanj/TreeMaker/interface/jetSelector.h"
 
 //#include "DelPanj/TreeMaker/interface/BoostedBtaggingMVACalculator.h"
-#include "BoostedBtaggingMVACalculator.h"
+#include "DelPanj/TreeMaker/interface/BoostedBtaggingMVACalculator.h"
 
 // For ECFs
-#include "PFatJet.h"
-#include "EnergyCorrelations.h"
+#include "DelPanj/TreeMaker/interface/PFatJet.h"
+#include "DelPanj/TreeMaker/interface/EnergyCorrelations.h"
 #include "fastjet/PseudoJet.hh"
 #include "fastjet/JetDefinition.hh"
 #include "fastjet/GhostedAreaSpec.hh"
@@ -74,23 +74,23 @@ class jetTree  : public baseTree{
  public:
   jetTree(std::string name, TTree* tree, const edm::ParameterSet& cfg );//name=patJetAk05
   ~jetTree();
-  
 
-  void Fill(const edm::Event& iEvent, edm::EventSetup const& iSetup) ; 
+
+  void Fill(const edm::Event& iEvent, edm::EventSetup const& iSetup) ;
   void Clear();
-  
+
   BoostedBtaggingMVACalculator mJetBoostedBtaggingMVACalc;
 
   edm::EDGetTokenT<reco::VertexCollection>          vertexToken;
   edm::EDGetTokenT<double>                          rhoForJetToken;
   edm::EDGetTokenT<pat::JetCollection>              jetToken;
   edm::EDGetTokenT<pat::JetCollection>              prunedMToken;
-  
-    
+
+
  private:
 
   jetTree(){};
-  
+
   /* For ECF: starts here  */
   fastjet::AreaDefinition *areaDef;
   fastjet::GhostedAreaSpec *activeArea;
@@ -103,13 +103,14 @@ class jetTree  : public baseTree{
   void SetBranches();
 
   bool isTHINJet_;
+  bool isTHINdeepCSVJet_;
   bool isFATJet_;
   bool isADDJet_;
   bool isAK4PuppiJet_;
   bool isAK8PuppiJet_;
   bool isCA15PuppiJet_;
   bool useJECText_;
-  
+
   std::string svTagInfosCstr_;
 
   std::string jecUncPayLoadName_; // for global tag
@@ -155,7 +156,7 @@ class jetTree  : public baseTree{
   std::vector<bool>  isPUJetIDMedium_;
   std::vector<bool>  isPUJetIDTight_;
 
-  //Energy Fraction and Multiplicity 
+  //Energy Fraction and Multiplicity
 
   std::vector<float> jetCEmEF_;
   std::vector<float> jetCHadEF_;
@@ -187,6 +188,9 @@ class jetTree  : public baseTree{
   // btag information
   std::vector<float> jetSSV_;
   std::vector<float> jetCSV_;
+  std::vector<float> jetDeepCSV_b_;
+  std::vector<float> jetDeepCSV_c_;
+  std::vector<float> jetDeepCSV_light_;
   std::vector<float> jetSSVHE_;
   std::vector<float> jetCISVV2_;
   std::vector<float> jetTCHP_;
@@ -202,13 +206,13 @@ class jetTree  : public baseTree{
 
 
   //ak8jet mass
- 
+
   //
-    
-  std::vector<float>  jetSDmass_; 
+
+  std::vector<float>  jetSDmass_;
   std::vector<float>  jetPRmass_; // from miniAOD
-  std::vector<float>  jetPRmassL2L3Corr_; 
-  
+  std::vector<float>  jetPRmassL2L3Corr_;
+
 
   //puppi related stuff
   std::vector<float> jetPuppiTau1_;
@@ -219,28 +223,61 @@ class jetTree  : public baseTree{
   TClonesArray *jetPuppiP4_;
   TClonesArray *jetPuppiSDRawP4_;
   std::vector<int>   nSubSDPuppiJet_;
-  std::vector<std::vector<int> >   subjetSDPuppiFatJetIndex_; 
+  std::vector<std::vector<int> >   subjetSDPuppiFatJetIndex_;
   std::vector<std::vector<float> > subjetSDPuppiPx_;
   std::vector<std::vector<float> > subjetSDPuppiPy_;
   std::vector<std::vector<float> > subjetSDPuppiPz_;
   std::vector<std::vector<float> > subjetSDPuppiE_;
   std::vector<std::vector<float> > subjetSDPuppiCSV_;
-  
+
 
   // For CA15 double b-tagger and ECFs: start here
   /*
     betas = {0.5,1.,2.,4.};
     Ns = {1,2,3,4};
     orders = {1,2,3};
-    ECF( O, N, beta) 
+    ECF( O, N, beta)
   */
   std::vector<float> ca15_doublebtag;
   std::vector<float> ECF_2_3_10;
   std::vector<float> ECF_1_2_10;
-  
+
   // For CA15 double b-tagger and ECFs: ends here
-  
-  
+  std::vector<float> z_ratio_t;
+  std::vector<float> SubJet_csv_t;
+  std::vector<float> trackSipdSig_3_t;
+  std::vector<float> trackSipdSig_2_t;
+  std::vector<float> trackSipdSig_1_t;
+  std::vector<float> trackSipdSig_0_t;
+  std::vector<float> trackSipdSig_1_0_t;
+  std::vector<float> trackSipdSig_0_0_t;
+  std::vector<float> trackSipdSig_1_1_t;
+  std::vector<float> trackSipdSig_0_1_t;
+  std::vector<float> trackSip2dSigAboveCharm_0_t;
+  std::vector<float> trackSip2dSigAboveBottom_0_t;
+  std::vector<float> trackSip2dSigAboveBottom_1_t;
+  std::vector<float> tau1_trackEtaRel_0_t;
+  std::vector<float> tau1_trackEtaRel_1_t;
+  std::vector<float> tau1_trackEtaRel_2_t;
+  std::vector<float> tau0_trackEtaRel_0_t;
+  std::vector<float> tau0_trackEtaRel_1_t;
+  std::vector<float> tau0_trackEtaRel_2_t;
+  std::vector<float> tau_vertexMass_0_t;
+  std::vector<float> tau_vertexEnergyRatio_0_t;
+  std::vector<float> tau_vertexDeltaR_0_t;
+  std::vector<float> tau_flightDistance2dSig_0_t;
+  std::vector<float> tau_vertexMass_1_t;
+  std::vector<float> tau_vertexEnergyRatio_1_t;
+  std::vector<float> tau_flightDistance2dSig_1_t;
+  std::vector<float> jetNTracks_t;
+  std::vector<float> nSV_t;
+  std::vector<float> massPruned_t;
+  std::vector<float> flavour_t;
+  std::vector<float> nbHadrons_t;
+  std::vector<float> ptPruned_t;
+  std::vector<float> etaPruned_t;
+
+
   //jet  Hbb tagger for fat and add jet
 
   std::vector<float> jet_DoubleSV_;
@@ -257,16 +294,16 @@ class jetTree  : public baseTree{
 
   std::vector<float> jetGenSDmass_; // build from genJets of subjets
   std::vector<int>   nSubSDJet_;
-  std::vector<std::vector<int> >   subjetSDFatJetIndex_; 
+  std::vector<std::vector<int> >   subjetSDFatJetIndex_;
   std::vector<std::vector<float> > subjetSDPx_;
   std::vector<std::vector<float> > subjetSDPy_;
   std::vector<std::vector<float> > subjetSDPz_;
   std::vector<std::vector<float> > subjetSDE_;
   std::vector<std::vector<float> > subjetSDRawFactor_;
-  std::vector<std::vector<int> >   subjetSDCharge_; 
+  std::vector<std::vector<int> >   subjetSDCharge_;
   std::vector<std::vector<int> >   subjetSDPartonFlavor_;
   std::vector<std::vector<int> >   subjetSDHadronFlavor_;
-  std::vector<std::vector<float> > subjetSDCSV_;        
+  std::vector<std::vector<float> > subjetSDCSV_;
 
 
  protected:
