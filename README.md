@@ -33,7 +33,7 @@ cp -p DelPanj/tempfix/BadGlobalMuonTagger.cc RecoMET/METFilters/plugins/BadGloba
 ```
 git clone git@github.com:cms-jet/JetToolbox.git JMEAnalysis/JetToolbox
 cd JMEAnalysis/JetToolbox
-git checkout jetToolbox_94X_v1
+git checkout jetToolbox_94X_v3
 cd -
 ```
 
