@@ -3,7 +3,7 @@
 
 # For CMSSW_10_2_6
 ```
-setenv SCRAM_ARCH slc6_amd64_gcc700
+export SCRAM_ARCH=slc6_amd64_gcc700
 cmsrel CMSSW_10_2_6
 cd CMSSW_10_2_6/src
 cmsenv
@@ -18,7 +18,7 @@ git cms-addpkg RecoMET/METFilters
 ## For DelPanj
 
 ```
-git clone git@github.com:tiwariPC/DMAnaRun2.git DelPanj
+git clone git@github.com:deepakcern/DMAnaRun2.git DelPanj
 
 cd DelPanj
 
