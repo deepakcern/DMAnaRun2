@@ -18,7 +18,7 @@ git cms-addpkg RecoMET/METFilters
 ## For DelPanj
 
 ```
-git clone git@github.com:tiwariPC/DMAnaRun2.git DelPanj
+git clone git@github.com:deepakcern/DMAnaRun2.git DelPanj
 
 cd DelPanj
 
