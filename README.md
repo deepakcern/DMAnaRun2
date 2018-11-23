@@ -3,7 +3,7 @@
 
 # For CMSSW_10_2_6
 ```
-export SCRAM_ARCH=slc6_amd64_gcc700
+setenv SCRAM_ARCH slc6_amd64_gcc700
 cmsrel CMSSW_10_2_6
 cd CMSSW_10_2_6/src
 cmsenv
@@ -18,11 +18,11 @@ git cms-addpkg RecoMET/METFilters
 ## For DelPanj
 
 ```
-git clone git@github.com:deepakcern/DMAnaRun2.git DelPanj
+git clone git@github.com:tiwariPC/DMAnaRun2.git DelPanj
 
 cd DelPanj
 
-git checkout 2018_102X
+git checkout 102x_2018data
 
 cd -
 
@@ -33,7 +33,7 @@ cp -p DelPanj/tempfix/BadGlobalMuonTagger.cc RecoMET/METFilters/plugins/BadGloba
 ```
 git clone git@github.com:cms-jet/JetToolbox.git JMEAnalysis/JetToolbox
 cd JMEAnalysis/JetToolbox
-git checkout jetToolbox_94X_v3
+git checkout jetToolbox_91X_v1
 cd -
 ```
 
@@ -42,7 +42,7 @@ cd -
 ```
 scramv1 b clean
 
-scramv1 b -j 8
+scramv1 b -j 2
 ```
 
 ## To test the job locally
