@@ -22,7 +22,7 @@ git clone git@github.com:deepakcern/DMAnaRun2.git DelPanj
 
 cd DelPanj
 
-git checkout 102x_2018data
+git checkout 2018_102X
 
 cd -
 
