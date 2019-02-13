@@ -15,7 +15,7 @@ cmsenv
 ## For v4 Double b-tagger
 
 ```
-setenv CMSSW_GIT_REFERENCE /cvmfs/cms.cern.ch/cmssw.git.daily
+export CMSSW_GIT_REFERENCE=/cvmfs/cms.cern.ch/cmssw.git.daily
 git cms-init
 
 git remote add btv-cmssw https://github.com/cms-btv-pog/cmssw.git
