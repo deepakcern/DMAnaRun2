@@ -59,11 +59,6 @@ cp -p DelPanj/tempfix/badGlobalMuonTaggersMiniAOD_cff.py RecoMET/METFilters/pyth
 git clone git@github.com:cms-jet/JetToolbox.git JMEAnalysis/JetToolbox -b jetToolbox_80X
 ```
 
-## Setup TensorFlow
-```
-git clone https://gitlab.cern.ch/mrieger/CMSSW-DNN/
-git checkout tf_py_cpython
-```
 
 ## Compile (due to the external packages, will take about 15-20 mins)
 ```
