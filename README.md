@@ -1,7 +1,7 @@
 
 # DMAnaRun2 setup
 
-# Setup using script
+# 1. Setup using script
 
 ```
 mkdir DMAnalyser
@@ -16,7 +16,9 @@ scramv1 b -j 8
 
 ```
 
-# Manual setup For CMSSW_8_0_26_patch1
+To test in locally please follow section "To test the job locally" in manual setup. To submit crab job, please follow "MC/DATA crab job" section in  manual setup.
+
+# 2. Manual setup For CMSSW_8_0_26_patch1
 ```
 export SCRAM_ARCH=slc6_amd64_gcc530
 cmsrel CMSSW_8_0_26_patch1
@@ -119,7 +121,7 @@ cd $CMSSW_BASE/src
 cmsenv
 ```
 
-## To test the job locally
+## 
 
 ```
 cp -p DelPanj/miniIso_effectiveArea/*txt .
