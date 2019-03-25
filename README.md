@@ -16,7 +16,7 @@ scramv1 b -j 8
 
 ```
 
-To test in locally please follow section "To test the job locally" in manual setup. To submit crab job, please follow "MC/DATA crab job" section in  manual setup.
+To test it locally please follow section ```To test the job locally```  in manual setup. To submit crab job, please follow ```MC/DATA crab job``` section in  manual setup.
 
 # 2. Manual setup For CMSSW_8_0_26_patch1
 ```
