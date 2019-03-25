@@ -18,7 +18,8 @@ scramv1 b -j 8
 
 To test it locally please follow section ```To test the job locally```  in manual setup. To submit crab job, please follow ```MC/DATA crab job``` section in  manual setup.
 
-# 2. Manual setup for CMSSW_8_0_26_patch1
+# 2. Manual setup 
+## For CMSSW_8_0_26_patch1
 ```
 export SCRAM_ARCH=slc6_amd64_gcc530
 cmsrel CMSSW_8_0_26_patch1
