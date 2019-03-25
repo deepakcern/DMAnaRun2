@@ -4,7 +4,16 @@
 # Setup using script
 
 ```
-wget 
+mkdir DMAnalyser
+cd DMAnalyser
+wget https://raw.githubusercontent.com/deepakcern/DMAnaRun2/80X_regression/install.sh
+git clone https://gitlab.cern.ch/mrieger/CMSSW-DNN.git DNN
+cd DNN
+git checkout tf_py_cpython
+cd -
+./DNN/setup_legacy.sh
+scramv1 b -j 8
+
 ```
 
 # Manual setup For CMSSW_8_0_26_patch1
