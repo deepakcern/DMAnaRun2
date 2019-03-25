@@ -1,7 +1,7 @@
 
 # DMAnaRun2 setup
 
-# 1. Setup using script
+# 1. Setup using script [setup includes b jet regression]
 
 ```
 mkdir DMAnalyser
