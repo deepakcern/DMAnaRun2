@@ -103,7 +103,7 @@ process.HBHENoiseFilterResultProducer.minZeros = cms.int32(99999)
 '''
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(50000)
+    input = cms.untracked.int32(10)
 )
 
 '''
@@ -124,11 +124,10 @@ process.HBHENoiseFilterResultProducer.IgnoreTS4TS5ifJetInLowBVRegion=cms.bool(Fa
 ##)
 ##
 
-import FWCore.Utilities.FileUtils as FileUtils
 
 # Input source
 if options.runOnMC:
-	testFile=FileUtils.loadListFromFile('/afs/cern.ch/work/d/dekumar/public/monoH/storefiles_ggF/savedFiles/2HDMa_gg_tb_1p0_MH3_600_MH4_200_MH2_600_MHC_600.txt')
+	testFile='root://cms-xrd-global.cern.ch///store/mc/RunIISummer16MiniAODv2/BBbarDMJets_pseudo_NLO_Mchi-1_Mphi-50_TuneCUETP8M1_13TeV-madgraph-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/100000/0470A659-F1CF-E611-BA86-002590E7DFD6.root'
 else:
 	testFile='/store/data/Run2016G/JetHT/MINIAOD/03Feb2017-v1/100000/006E7AF2-AEEC-E611-A88D-7845C4FC3B00.root'
 
@@ -458,13 +457,13 @@ for idmod in my_phoid_modules:
 ## For normal AK4 jets jet energy correction on top of miniAOD
 from PhysicsTools.PatAlgos.producersLayer1.jetUpdater_cff import updatedPatJetCorrFactors
 process.patJetCorrFactorsReapplyJECAK4 = updatedPatJetCorrFactors.clone(
-	src = cms.InputTag("appliedRegJets"),
+	src = cms.InputTag("slimmedJets"),
 	levels = jetCorrectionLevelsFullCHS,
 	payload = 'AK4PFchs' ) # Make sure to choose the appropriate levels and payload here!
 
 from PhysicsTools.PatAlgos.producersLayer1.jetUpdater_cff import updatedPatJets
 process.patJetsReapplyJECAK4 = updatedPatJets.clone(
-	jetSource = cms.InputTag("appliedRegJets"),
+	jetSource = cms.InputTag("slimmedJets"),
 	jetCorrFactorsSource = cms.VInputTag(cms.InputTag("patJetCorrFactorsReapplyJECAK4"))
   )
 
@@ -523,7 +522,7 @@ process.jetCorrSequenceForPrunedMass = cms.Sequence( process.patJetCorrFactorsRe
 
 updateJetCollection(
         process,
-        jetSource = cms.InputTag('appliedRegJets'),
+        jetSource = cms.InputTag('slimmedJets'),
         jetCorrections = ('AK4PFchs', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'None'),
         btagDiscriminators = ['deepFlavourJetTags:probudsg', 'deepFlavourJetTags:probb', 'deepFlavourJetTags:probc', 'deepFlavourJetTags:probbb', 'deepFlavourJetTags:probcc'], ## to add discriminators
         btagPrefix = 'TEST',
@@ -558,7 +557,7 @@ process.tree.fillCA15PuppiJetInfo  = cms.bool(True)
 
 
 if options.useJECText:
-    process.tree.THINJets      = cms.InputTag("appliedRegJets")
+    process.tree.THINJets      = cms.InputTag("slimmedJets")
     process.tree.AK4deepCSVJets      = cms.InputTag("selectedUpdatedPatJets")
     process.tree.FATJets       = cms.InputTag("slimmedJetsAK8")
     process.tree.FATJetsForPrunedMass       = cms.InputTag("slimmedJetsAK8")
@@ -590,15 +589,6 @@ process.BadChargedCandidateFilter.PFCandidates = cms.InputTag("packedPFCandidate
 process.BadChargedCandidateFilter.taggingMode = cms.bool(True)
 ##
 
-
-process.appliedRegJets     = cms.EDProducer('bRegressionProducer',
-                                           JetTag=cms.InputTag("slimmedJets"),
-                                           rhoFixedGridCollection = cms.InputTag('fixedGridRhoFastjetAll'),
-                                           bRegressionWeightfile= cms.untracked.string("/afs/cern.ch/work/d/dekumar/public/flashgg_setup/CMSSW_8_0_28/src/flashgg/MetaData/data/DNN_models/model-18"),
-                                           y_mean = cms.untracked.double(1.0454729795455933) ,
-                                           y_std = cms.untracked.double( 0.31628304719924927)
-                                           )
-
 process.allEventsCounter = cms.EDFilter(
 	"EventCounter"
  )
@@ -606,7 +596,6 @@ process.allEventsCounter = cms.EDFilter(
 
 if not options.useJECText:
 	process.analysis = cms.Path(
-                process.appliedRegJets+
 		process.allEventsCounter+
 		process.egmGsfElectronIDSequence+## by raman
 		process.egmPhotonIDSequence+ ## by raman
@@ -625,7 +614,6 @@ if not options.useJECText:
 		)
 else:
 	process.analysis = cms.Path(
-                process.appliedRegJets+
 		process.allEventsCounter+
 		process.egmGsfElectronIDSequence+## by raman
 		process.egmPhotonIDSequence+ ## by raman
