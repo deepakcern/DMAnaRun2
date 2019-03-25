@@ -15,7 +15,7 @@ cd -
 scramv1 b -j 8
 
 ```
-
+Please check location of bRegressionWeightfile inside the `treeMaker_Summer16_cfg.py` file
 To test it locally please follow section ```To test the job locally```  in manual setup. To submit crab job, please follow ```MC/DATA crab job``` section in  manual setup.
 
 # 2. Manual setup 
