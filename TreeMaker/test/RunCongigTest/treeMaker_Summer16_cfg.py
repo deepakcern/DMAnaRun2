@@ -594,7 +594,7 @@ process.BadChargedCandidateFilter.taggingMode = cms.bool(True)
 process.appliedRegJets     = cms.EDProducer('bRegressionProducer',
                                            JetTag=cms.InputTag("slimmedJets"),
                                            rhoFixedGridCollection = cms.InputTag('fixedGridRhoFastjetAll'),
-                                           bRegressionWeightfile= cms.untracked.string("/afs/cern.ch/work/d/dekumar/public/flashgg_setup/CMSSW_8_0_28/src/flashgg/MetaData/data/DNN_models/model-18"),
+                                           bRegressionWeightfile= cms.untracked.string("../../../MetaData/data/DNN_models/model-18"),
                                            y_mean = cms.untracked.double(1.0454729795455933) ,
                                            y_std = cms.untracked.double( 0.31628304719924927)
                                            )
