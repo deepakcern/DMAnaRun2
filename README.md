@@ -4,8 +4,8 @@
 # 1. Setup using script [setup includes b jet regression]
 
 ```
-mkdir DMAnalyser
-cd DMAnalyser
+mkdir DMAnalyzer
+cd DMAnalyzer
 wget https://raw.githubusercontent.com/deepakcern/DMAnaRun2/80X_regression/install.sh
 git clone https://gitlab.cern.ch/mrieger/CMSSW-DNN.git DNN
 cd DNN
