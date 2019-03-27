@@ -522,7 +522,7 @@ process.jetCorrSequenceForPrunedMass = cms.Sequence( process.patJetCorrFactorsRe
 
 updateJetCollection(
         process,
-        jetSource = cms.InputTag('slimmedJets'),
+        jetSource = cms.InputTag('appliedRegJets'),
         jetCorrections = ('AK4PFchs', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'None'),
         btagDiscriminators = ['deepFlavourJetTags:probudsg', 'deepFlavourJetTags:probb', 'deepFlavourJetTags:probc', 'deepFlavourJetTags:probbb', 'deepFlavourJetTags:probcc'], ## to add discriminators
         btagPrefix = 'TEST',
@@ -557,7 +557,7 @@ process.tree.fillCA15PuppiJetInfo  = cms.bool(True)
 
 
 if options.useJECText:
-    process.tree.THINJets      = cms.InputTag("slimmedJets")
+    process.tree.THINJets      = cms.InputTag("appliedRegJets")
     process.tree.AK4deepCSVJets      = cms.InputTag("selectedUpdatedPatJets")
     process.tree.FATJets       = cms.InputTag("slimmedJetsAK8")
     process.tree.FATJetsForPrunedMass       = cms.InputTag("slimmedJetsAK8")
