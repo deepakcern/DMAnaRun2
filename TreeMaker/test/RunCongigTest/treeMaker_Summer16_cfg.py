@@ -103,7 +103,7 @@ process.HBHENoiseFilterResultProducer.minZeros = cms.int32(99999)
 '''
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(50000)
+    input = cms.untracked.int32(10)
 )
 
 '''
@@ -124,11 +124,10 @@ process.HBHENoiseFilterResultProducer.IgnoreTS4TS5ifJetInLowBVRegion=cms.bool(Fa
 ##)
 ##
 
-import FWCore.Utilities.FileUtils as FileUtils
 
 # Input source
 if options.runOnMC:
-	testFile=FileUtils.loadListFromFile('/afs/cern.ch/work/d/dekumar/public/monoH/storefiles_ggF/savedFiles/2HDMa_gg_tb_1p0_MH3_600_MH4_200_MH2_600_MHC_600.txt')
+	testFile='root://cms-xrd-global.cern.ch///store/mc/RunIISummer16MiniAODv2/BBbarDMJets_pseudo_NLO_Mchi-1_Mphi-50_TuneCUETP8M1_13TeV-madgraph-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/100000/0470A659-F1CF-E611-BA86-002590E7DFD6.root'
 else:
 	testFile='/store/data/Run2016G/JetHT/MINIAOD/03Feb2017-v1/100000/006E7AF2-AEEC-E611-A88D-7845C4FC3B00.root'
 
@@ -523,7 +522,7 @@ process.jetCorrSequenceForPrunedMass = cms.Sequence( process.patJetCorrFactorsRe
 
 updateJetCollection(
         process,
-        jetSource = cms.InputTag('appliedRegJets'),
+        jetSource = cms.InputTag('slimmedJets'),
         jetCorrections = ('AK4PFchs', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'None'),
         btagDiscriminators = ['deepFlavourJetTags:probudsg', 'deepFlavourJetTags:probb', 'deepFlavourJetTags:probc', 'deepFlavourJetTags:probbb', 'deepFlavourJetTags:probcc'], ## to add discriminators
         btagPrefix = 'TEST',
@@ -558,7 +557,7 @@ process.tree.fillCA15PuppiJetInfo  = cms.bool(True)
 
 
 if options.useJECText:
-    process.tree.THINJets      = cms.InputTag("appliedRegJets")
+    process.tree.THINJets      = cms.InputTag("slimmedJets")
     process.tree.AK4deepCSVJets      = cms.InputTag("selectedUpdatedPatJets")
     process.tree.FATJets       = cms.InputTag("slimmedJetsAK8")
     process.tree.FATJetsForPrunedMass       = cms.InputTag("slimmedJetsAK8")
@@ -571,7 +570,11 @@ process.TFileService = cms.Service("TFileService",
 				   # fileName = cms.string('$outputFileName')
 				   )
 
-
+##Trigger Filter
+process.trigFilter = cms.EDFilter('TrigFilter',
+                                  TrigTag = cms.InputTag("TriggerResults::HLT"),
+                                  TrigPaths = cms.vstring('HLT_PFMET170_','HLT_PFMET170_NoiseCleaned','HLT_PFMET170_JetIdCleaned','HLT_PFMET170_HBHECleaned','HLT_PFMETNoMu90_PFMHTNoMu90_IDTight','HLT_PFMETNoMu100_PFMHTNoMu100_IDTight','HLT_PFMETNoMu110_PFMHTNoMu110_IDTight','HLT_PFMETNoMu120_PFMHTNoMu120_IDTight','HLT_PFMET110_PFMHT110_','HLT_IsoMu24','HLT_IsoTkMu24','HLT_IsoMu27','HLT_IsoTkMu27','HLT_Ele27_WPTight_Gsf','HLT_Ele105_CaloIdVT_GsfTrkIdT','HLT_Ele115_CaloIdVT_GsfTrkIdT','HLT_Ele32_WPTight_Gsf','HLT_IsoMu20','HLT_Ele27_eta2p1_WPTight_Gsf','HLT_Ele27_WPLoose_Gsf_v','HLT_Ele32_eta2p1_WPTight_Gsf','HLT_Photon165_HE10','HLT_Photon175','HLT_Ele105_CaloIdVT_GsfTrkIdT')
+                                  )
 
 ## New MET Filters
 process.load('RecoMET.METFilters.BadPFMuonFilter_cfi')
@@ -590,11 +593,13 @@ process.BadChargedCandidateFilter.PFCandidates = cms.InputTag("packedPFCandidate
 process.BadChargedCandidateFilter.taggingMode = cms.bool(True)
 ##
 
+import os
+bRegressionWeightfile_str = cms.untracked.string(os.environ["CMSSW_BASE"]+"/src/MetaData/data/DNN_models/model-18")
 
 process.appliedRegJets     = cms.EDProducer('bRegressionProducer',
                                            JetTag=cms.InputTag("slimmedJets"),
                                            rhoFixedGridCollection = cms.InputTag('fixedGridRhoFastjetAll'),
-                                           bRegressionWeightfile= cms.untracked.string("../../../MetaData/data/DNN_models/model-18"),
+                                           bRegressionWeightfile= bRegressionWeightfile_str,#cms.untracked.string("/afs/cern.ch/work/d/dekumar/public/monoH/DelPanj_2016/CMSSW_8_0_26_patch1/src/MetaData/data/DNN_models/model-18"),
                                            y_mean = cms.untracked.double(1.0454729795455933) ,
                                            y_std = cms.untracked.double( 0.31628304719924927)
                                            )
@@ -606,7 +611,8 @@ process.allEventsCounter = cms.EDFilter(
 
 if not options.useJECText:
 	process.analysis = cms.Path(
-                process.appliedRegJets+
+        process.appliedRegJets+
+		process.trigFilter+
 		process.allEventsCounter+
 		process.egmGsfElectronIDSequence+## by raman
 		process.egmPhotonIDSequence+ ## by raman
@@ -625,7 +631,8 @@ if not options.useJECText:
 		)
 else:
 	process.analysis = cms.Path(
-                process.appliedRegJets+
+        process.appliedRegJets+
+		process.trigFilter+
 		process.allEventsCounter+
 		process.egmGsfElectronIDSequence+## by raman
 		process.egmPhotonIDSequence+ ## by raman
