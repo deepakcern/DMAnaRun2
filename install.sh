@@ -31,7 +31,7 @@ git clone git@github.com:deepakcern/DMAnaRun2.git DelPanj
 
 cd DelPanj
 
-git checkout 80X_regression
+git checkout 80X_regression_withReduction
 
 cd -
 
