@@ -52,8 +52,8 @@ config.JobType.allowUndistributedCMSSW=True
 workname = 'monoH_breg_test2'
 
 config.section_("Site")
-config.Site.storageSite = "T3_TW_NCU"
-#config.Site.storageSite = "T2_CH_CERN"
+#config.Site.storageSite = "T3_TW_NCU"
+config.Site.storageSite = "T2_IN_TIFR"
 ##config.Site.storageSite = "T2_US_Wisconsin"
 #config.Site.storageSite = "T2_TW_NCHC"
 config.Data.outLFNDirBase = '/store/user/%s/t3store2/%s' % (getUsernameFromSiteDB(), workname)
