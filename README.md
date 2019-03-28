@@ -46,7 +46,7 @@ source /cvmfs/cms.cern.ch/crab3/crab.csh or source /cvmfs/cms.cern.ch/crab3/crab
 voms-proxy-init --voms cms
 python MultiCrab_dihiggs.py submit
 ```
-
+### Note: To submit crab jobs for private miniAOD samples, copy required `*.py` and `*JEC*.txt` files inside PrivateCrabSubmit directory and and run `CrabJobs_submit.py` file but you also need to provide signal files in txt format    
 
 # 2. Manual setup 
 ## For CMSSW_8_0_26_patch1
