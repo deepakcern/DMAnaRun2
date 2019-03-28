@@ -53,7 +53,7 @@ using namespace edm;
       EDGetTokenT<View<pat::Jet> > jetToken_;
       //EDGetTokenT<pat::JetCollection> jetToken_;
       edm::EDGetTokenT<double> rhoToken_;
-      string bRegressionWeightfileName_;
+      //string bRegressionWeightfileName_;
       double y_mean_,y_std_;
 
       dnn::tf::Graph NNgraph_;
@@ -113,14 +113,15 @@ using namespace edm;
       //     inputTagJets_( iConfig.getParameter<std::vector<edm::InputTag> >( "JetTag" )) {
       inputTagJets_( iConfig.getParameter<edm::InputTag>( "JetTag" )) ,
       rhoToken_( consumes<double>(iConfig.getParameter<edm::InputTag>( "rhoFixedGridCollection" ) ) ),
-      bRegressionWeightfileName_( iConfig.getUntrackedParameter<std::string>("bRegressionWeightfile")),
+     // bRegressionWeightfileName_( iConfig.getUntrackedParameter<std::string>("bRegressionWeightfile")),
       y_mean_(iConfig.getUntrackedParameter<double>("y_mean")),
       y_std_(iConfig.getUntrackedParameter<double>("y_std"))
   {
       jetToken_= consumes<View<pat::Jet> >(inputTagJets_);
       //jetToken_= consumes<pat::JetCollection>(inputTagJets_);
 
-
+      std::string cmssw_base = getenv("CMSSW_BASE");
+      std::string bRegressionWeightfileName_ = cmssw_base+"/src/DelPanj/TreeMaker/data/model-18";
 
       NNgraph_ = *(new dnn::tf::Graph(bRegressionWeightfileName_.c_str())); //FIXME make this configurable, for variables for breg check this PR https://github.com/cms-analysis/flashgg/pull/968 REMEMBER TO ADD THE LAST CONE!
       Jet_pt = 0.;
