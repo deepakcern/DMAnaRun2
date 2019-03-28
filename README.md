@@ -36,8 +36,10 @@ cd -
 mv jec/*PFchs.txt .
 mv jec/*PFPuppi.txt .
 rm -rf jec
+```
+Note: removed unwanted files from `DNN/Tensorflow/bin/data`  e.g `simplegraph.data-00000-of-00001`. Otherwise you may get error: ` input tarball size exceeds maximum allowed limit of 100 MB`
 
-
+```
 cp -p crabConfig_MC.py crabConfig.py
 
 source /cvmfs/cms.cern.ch/crab3/crab.csh or source /cvmfs/cms.cern.ch/crab3/crab.sh 
