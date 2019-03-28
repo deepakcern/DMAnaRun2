@@ -18,7 +18,30 @@ scramv1 b -j 8
 ```
 Please check location of bRegressionWeightfile inside the `treeMaker_Summer16_cfg.py` file. 
 
-To test it locally please follow section ```To test the job locally```  in manual setup. To submit crab job, please follow ```MC/DATA crab job``` section in  manual setup.
+## To submit MC crab jobs 
+modify directories in crabConfig.py and dataset in MultiCrab_dihiggs.py according to your need
+```
+cd DelPanj/CrabUtilities
+cp -p ../TreeMaker/test/RunCongigTest/treeMaker_Summer16_cfg.py .
+cp -p ../miniIso_effectiveArea/*txt .
+
+mkdir jec
+cd jec
+wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer16_23Sep2016V3_MC.tar.gz
+tar xvzf Summer16_23Sep2016V3_MC.tar.gz
+
+cd -
+mv jec/*PFchs.txt .
+mv jec/*PFPuppi.txt .
+rm -rf jec
+
+
+cp -p crabConfig_MC.py crabConfig.py
+
+source /cvmfs/cms.cern.ch/crab3/crab.csh or source /cvmfs/cms.cern.ch/crab3/crab.sh 
+voms-proxy-init --voms cms
+python MultiCrab_dihiggs.py submit
+```
 
 # 2. Manual setup 
 ## For CMSSW_8_0_26_patch1
