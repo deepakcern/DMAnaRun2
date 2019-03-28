@@ -14,6 +14,10 @@ config.section_("JobType")
 config.JobType.pluginName = 'Analysis'
 config.JobType.psetName = 'MVA-And-PFUnCorrectedMET.py'
 config.JobType.inputFiles = ['effAreaElectrons_cone03_pfNeuHadronsAndPhotons_25ns.txt','effAreasMuons_cone03_Spring15_25ns.txt',
+'../../MetaData/data/DNN_models/model-18.data-00000-of-00001',
+'../../MetaData/data/DNN_models/model-18.meta',
+'../../MetaData/data/DNN_models/model-18.index',
+'../../MetaData/data/DNN_models/model-18.pb',
 '../TreeMaker/data/BoostedSVDoubleCA15_withSubjet_v4.weights.xml',
 'Summer16_23Sep2016V3_MC_Uncertainty_AK8PFchs.txt',
 'Summer16_23Sep2016V3_MC_Uncertainty_AK8PFPuppi.txt',
@@ -33,7 +37,7 @@ config.JobType.inputFiles = ['effAreaElectrons_cone03_pfNeuHadronsAndPhotons_25n
 'Summer16_23Sep2016V3_MC_L1FastJet_AK8PFPuppi.txt',
 'Summer16_23Sep2016V3_MC_L1FastJet_AK4PFchs.txt']
 config.JobType.sendExternalFolder      = True
-
+config.JobType.sendPythonFolder        = True
 config.section_("Data")
 config.Data.inputDataset = '/DYJetsToLL_M-50_HT-100to200_Tune4C_13TeV-madgraph-tauola/Phys14DR-PU20bx25_PHYS14_25_V1-v1/MINIAODSIM'
 config.Data.inputDBS = 'global'
