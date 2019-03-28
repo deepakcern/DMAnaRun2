@@ -379,6 +379,8 @@ jetTree::Fill(const edm::Event& iEvent, edm::EventSetup const& iSetup){
     if(isTHINJet_){
       float jpumva=0.;
       jpumva= jet->userFloat("pileupJetId:fullDiscriminant");
+      bRegNNCorr_.push_back(jet->userFloat("bRegNNCorr"));
+      bRegNNResolution_.push_back(jet->userFloat("bRegNNResolution"));
       //std::cout<<" jpumva = "<<jpumva<<std::endl;
       PUJetID_.push_back(jpumva);
 
@@ -395,6 +397,8 @@ jetTree::Fill(const edm::Event& iEvent, edm::EventSetup const& iSetup){
     if(isTHINdeepCSVJet_){
       float jpumva=0.;
       jpumva= jet->userFloat("pileupJetId:fullDiscriminant");
+      bRegNNCorr_.push_back(jet->userFloat("bRegNNCorr"));
+      bRegNNResolution_.push_back(jet->userFloat("bRegNNResolution"));
       //std::cout<<" jpumva = "<<jpumva<<std::endl;
       PUJetID_.push_back(jpumva);
 
@@ -1014,6 +1018,9 @@ jetTree::SetBranches(){
     AddBranch(&isPUJetIDLoose_,  "isPUJetIDLoose");
     AddBranch(&isPUJetIDMedium_, "isPUJetIDMedium");
     AddBranch(&isPUJetIDTight_,  "isPUJetIDTight");
+    AddBranch(&bRegNNCorr_,"bRegNNCorr");
+    AddBranch(&bRegNNResolution_,"bRegNNResolution");
+
   }
 
   if(isTHINdeepCSVJet_){
@@ -1023,6 +1030,9 @@ jetTree::SetBranches(){
     AddBranch(&isPUJetIDLoose_,  "isPUJetIDLoose");
     AddBranch(&isPUJetIDMedium_, "isPUJetIDMedium");
     AddBranch(&isPUJetIDTight_,  "isPUJetIDTight");
+    AddBranch(&bRegNNCorr_,"bRegNNCorr");
+    AddBranch(&bRegNNResolution_,"bRegNNResolution");
+
   }
   if(isFATJet_ || isAK8PuppiJet_ || isCA15PuppiJet_){
 
@@ -1131,6 +1141,8 @@ jetTree::Clear(){
   isPUJetIDMedium_.clear();
   isPUJetIDTight_.clear();
 
+  bRegNNCorr_.clear();
+  bRegNNResolution_.clear();
   //Energy Fraction and Multiplicity
 
   jetCEmEF_.clear();
