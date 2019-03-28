@@ -32,7 +32,8 @@ config.JobType.inputFiles = ['effAreaElectrons_cone03_pfNeuHadronsAndPhotons_25n
 'Summer16_23Sep2016V3_MC_L1FastJet_AK8PFchs.txt',
 'Summer16_23Sep2016V3_MC_L1FastJet_AK8PFPuppi.txt',
 'Summer16_23Sep2016V3_MC_L1FastJet_AK4PFchs.txt']
-config.JobType.sendExternalFolder      = True
+config.JobType.sendExternalFolder = True
+config.JobType.sendPythonFolder = True
 
 config.section_("Data")
 config.Data.inputDataset = '/DYJetsToLL_M-50_HT-100to200_Tune4C_13TeV-madgraph-tauola/Phys14DR-PU20bx25_PHYS14_25_V1-v1/MINIAODSIM'
@@ -44,9 +45,11 @@ config.Data.unitsPerJob = 5
 
 config.JobType.allowUndistributedCMSSW=True
 
+workname = 'monoH_breg_test2'
 
 config.section_("Site")
 config.Site.storageSite = "T3_TW_NCU"
 #config.Site.storageSite = "T2_CH_CERN"
 ##config.Site.storageSite = "T2_US_Wisconsin"
 #config.Site.storageSite = "T2_TW_NCHC"
+config.Data.outLFNDirBase = '/store/user/%s/t3store2/%s' % (getUsernameFromSiteDB(), workname)
