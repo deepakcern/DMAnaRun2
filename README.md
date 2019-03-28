@@ -36,7 +36,7 @@ mv jec/*PFPuppi.txt .
 rm -rf jec
 
 
-cp -p crabConfig_MC.py crabConfig.py
+
 
 source /cvmfs/cms.cern.ch/crab3/crab.csh or source /cvmfs/cms.cern.ch/crab3/crab.sh 
 voms-proxy-init --voms cms
