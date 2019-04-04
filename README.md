@@ -6,7 +6,7 @@
 ```
 mkdir DMAnalyzer
 cd DMAnalyzer
-wget https://raw.githubusercontent.com/deepakcern/DMAnaRun2/80X_regression_withReduction/install.sh
+wget https://raw.githubusercontent.com/deepakcern/DMAnaRun2/80X_regression/install.sh
 . install.sh  #this will take ~1h
 git clone https://gitlab.cern.ch/mrieger/CMSSW-DNN.git DNN
 cd DNN
@@ -16,9 +16,11 @@ cd -
 scramv1 b -j 8
 
 ```
-Please check location of bRegressionWeightfile inside the `treeMaker_Summer16_cfg.py` file. 
+
+
 
 ## To submit MC crab jobs 
+
 modify directories in crabConfig.py and dataset in MultiCrab_dihiggs.py according to your need
 ```
 cd DelPanj/CrabUtilities
@@ -34,14 +36,17 @@ cd -
 mv jec/*PFchs.txt .
 mv jec/*PFPuppi.txt .
 rm -rf jec
+```
+Note: remove some unwanted files from `DNN/Tensorflow/bin/data`  e.g `simplegraph.data-00000-of-00001`. Otherwise you may get error: ` input tarball size exceeds maximum allowed limit of 100 MB`
 
-
-
+```
+cp -p crabConfig_MC.py crabConfig.py
 
 source /cvmfs/cms.cern.ch/crab3/crab.csh or source /cvmfs/cms.cern.ch/crab3/crab.sh 
 voms-proxy-init --voms cms
 python MultiCrab_dihiggs.py submit
 ```
+### Note: To submit crab jobs for private miniAOD samples, copy required `*.py` and `*JEC*.txt` files inside `PrivateCrabSubmit` directory and and run `CrabJobs_submit.py` file but you also need to provide signal files in txt format    
 
 # 2. Manual setup 
 ## For CMSSW_8_0_26_patch1
