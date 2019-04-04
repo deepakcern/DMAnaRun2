@@ -93,7 +93,7 @@ tree = cms.EDAnalyzer(
     useJECText = cms.bool(False),
 
     ### THINJet
-#    THINJets=cms.InputTag("slimmedJets"),
+#    THINJets=cms.InputTag("appliedRegJets"),
     THINJets         = cms.InputTag("patJetsReapplyJECAK4"),
     THINjecNames     = cms.vstring(
         'Summer16_23Sep2016V3_MC_L1FastJet_AK4PFchs.txt',

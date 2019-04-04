@@ -573,7 +573,8 @@ process.TFileService = cms.Service("TFileService",
 ##Trigger Filter
 process.trigFilter = cms.EDFilter('TrigFilter',
                                   TrigTag = cms.InputTag("TriggerResults::HLT"),
-                                  TrigPaths = cms.vstring('HLT_PFMET170_','HLT_PFMET170_NoiseCleaned','HLT_PFMET170_JetIdCleaned','HLT_PFMET170_HBHECleaned','HLT_PFMETNoMu90_PFMHTNoMu90_IDTight','HLT_PFMETNoMu100_PFMHTNoMu100_IDTight','HLT_PFMETNoMu110_PFMHTNoMu110_IDTight','HLT_PFMETNoMu120_PFMHTNoMu120_IDTight','HLT_PFMET110_PFMHT110_','HLT_IsoMu24','HLT_IsoTkMu24','HLT_IsoMu27','HLT_IsoTkMu27','HLT_Ele27_WPTight_Gsf','HLT_Ele105_CaloIdVT_GsfTrkIdT','HLT_Ele115_CaloIdVT_GsfTrkIdT','HLT_Ele32_WPTight_Gsf','HLT_IsoMu20','HLT_Ele27_eta2p1_WPTight_Gsf','HLT_Ele27_WPLoose_Gsf_v','HLT_Ele32_eta2p1_WPTight_Gsf','HLT_Photon165_HE10','HLT_Photon175','HLT_Ele105_CaloIdVT_GsfTrkIdT')
+                                  TrigPaths = cms.vstring("HLT_PFMET170_BeamHaloCleaned","HLT_PFMET170_HBHE_BeamHaloCleaned","HLT_PFMET170_NotCleaned","HLT_PFMET170_NoiseCleaned","HLT_PFMET170_JetIdCleaned","HLT_PFMET170_HBHECleaned","HLT_PFMETNoMu90_PFMHTNoMu90_IDTight","HLT_PFMETNoMu100_PFMHTNoMu100_IDTight","HLT_PFMETNoMu110_PFMHTNoMu110_IDTight","HLT_PFMETNoMu120_PFMHTNoMu120_IDTight","HLT_PFMET110_PFMHT110_IDTight","HLT_IsoMu24","HLT_IsoTkMu24","HLT_IsoMu27","HLT_IsoTkMu27","HLT_Ele27_WPTight_Gsf","HLT_Ele105_CaloIdVT_GsfTrkIdT","HLT_Ele115_CaloIdVT_GsfTrkIdT","HLT_Ele32_WPTight_Gsf","HLT_IsoMu20","HLT_Ele27_eta2p1_WPTight_Gsf","HLT_Ele27_WPLoose_Gsf","HLT_Ele32_eta2p1_WPTight_Gsf","HLT_Photon165_HE10","HLT_Photon175","HLT_Ele105_CaloIdVT_GsfTrkIdT"),
+                                  isMC_ = cms.bool(options.runOnMC)
                                   )
 
 ## New MET Filters
@@ -593,16 +594,14 @@ process.BadChargedCandidateFilter.PFCandidates = cms.InputTag("packedPFCandidate
 process.BadChargedCandidateFilter.taggingMode = cms.bool(True)
 ##
 
-import os
-bRegressionWeightfile_str = cms.untracked.string(os.environ["CMSSW_BASE"]+"/src/MetaData/data/DNN_models/model-18")
-
 process.appliedRegJets     = cms.EDProducer('bRegressionProducer',
                                            JetTag=cms.InputTag("slimmedJets"),
                                            rhoFixedGridCollection = cms.InputTag('fixedGridRhoFastjetAll'),
-                                           #bRegressionWeightfile= bRegressionWeightfile_str,#cms.untracked.string("/afs/cern.ch/work/d/dekumar/public/monoH/DelPanj_2016/CMSSW_8_0_26_patch1/src/MetaData/data/DNN_models/model-18"),
+                                           #bRegressionWeightfile= cms.untracked.string("../../../MetaData/data/DNN_models/model-18"),
                                            y_mean = cms.untracked.double(1.0454729795455933) ,
                                            y_std = cms.untracked.double( 0.31628304719924927)
                                            )
+
 
 process.allEventsCounter = cms.EDFilter(
 	"EventCounter"
