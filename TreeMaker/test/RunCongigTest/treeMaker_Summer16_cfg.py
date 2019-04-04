@@ -599,7 +599,7 @@ bRegressionWeightfile_str = cms.untracked.string(os.environ["CMSSW_BASE"]+"/src/
 process.appliedRegJets     = cms.EDProducer('bRegressionProducer',
                                            JetTag=cms.InputTag("slimmedJets"),
                                            rhoFixedGridCollection = cms.InputTag('fixedGridRhoFastjetAll'),
-                                           bRegressionWeightfile= bRegressionWeightfile_str,#cms.untracked.string("/afs/cern.ch/work/d/dekumar/public/monoH/DelPanj_2016/CMSSW_8_0_26_patch1/src/MetaData/data/DNN_models/model-18"),
+                                           #bRegressionWeightfile= bRegressionWeightfile_str,#cms.untracked.string("/afs/cern.ch/work/d/dekumar/public/monoH/DelPanj_2016/CMSSW_8_0_26_patch1/src/MetaData/data/DNN_models/model-18"),
                                            y_mean = cms.untracked.double(1.0454729795455933) ,
                                            y_std = cms.untracked.double( 0.31628304719924927)
                                            )
