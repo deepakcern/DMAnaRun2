@@ -6,7 +6,7 @@
 ```
 mkdir DMAnalyzer
 cd DMAnalyzer
-wget https://raw.githubusercontent.com/deepakcern/DMAnaRun2/80X_regression/install.sh
+wget https://raw.githubusercontent.com/deepakcern/DMAnaRun2/80X_regression_withReduction/install.sh
 . install.sh  #this will take ~1h
 cd src/
 git clone https://gitlab.cern.ch/mrieger/CMSSW-DNN.git DNN
