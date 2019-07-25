@@ -70,6 +70,8 @@ void hpstauInfo::Fill(const edm::Event& iEvent, const edm::EventSetup& iSetup){
 
     //disc_byLooseIsolation.push_back(tau->tauID("byLooseIsolation"));
     disc_byVLooseIsolationMVArun2v1DBnewDMwLT.push_back(tau->tauID("byVLooseIsolationMVArun2v1DBnewDMwLT"));
+    std::cout << "byVLooseIsolationMVArun2v1DBnewDMwLT"  << tau->tauID("byVLooseIsolationMVArun2v1DBnewDMwLT")  << std::endl;
+
     disc_byVLooseIsolationMVA3newDMwLT.push_back(tau->tauID("byVLooseIsolationMVArun2v1PWnewDMwLT"));
     disc_byLooseIsolationMVA3newDMwLT.push_back(tau->tauID("byLooseIsolationMVArun2v1PWnewDMwLT"));
     disc_byMediumIsolationMVA3newDMwLT.push_back(tau->tauID("byMediumIsolationMVArun2v1PWnewDMwLT"));
@@ -84,12 +86,17 @@ void hpstauInfo::Fill(const edm::Event& iEvent, const edm::EventSetup& iSetup){
     disc_byVTightIsolationMVA3oldDMwLT.push_back(tau->tauID("byVTightIsolationMVArun2v1PWoldDMwLT"));
     disc_byVVTightIsolationMVA3oldDMwLT.push_back(tau->tauID("byVVTightIsolationMVArun2v1PWoldDMwLT"));
 
+    disc_byCombinedIsolationDeltaBetaCorr3Hits.push_back(tau->tauID("byCombinedIsolationDeltaBetaCorrRaw3Hits"));
+    //std::cout << "disc_byCombinedIsolationDeltaBetaCorr3Hits:   "  <<  tau->tauID("byCombinedIsolationDeltaBetaCorrRaw3Hits")  << std::endl; 
     disc_byLooseCombinedIsolationDeltaBetaCorr3Hits.push_back(tau->tauID("byLooseCombinedIsolationDeltaBetaCorr3Hits"));
     disc_byMediumCombinedIsolationDeltaBetaCorr3Hits.push_back(tau->tauID("byMediumCombinedIsolationDeltaBetaCorr3Hits"));
     disc_byTightCombinedIsolationDeltaBetaCorr3Hits.push_back(tau->tauID("byTightCombinedIsolationDeltaBetaCorr3Hits"));
 
     disc_decayModeFinding.push_back(tau->tauID("decayModeFinding"));
+    //std::cout << "decayModeFinding: "  << tau->tauID("decayModeFinding") << std::endl;
+
     disc_decayModeFindingNewDMs.push_back(tau->tauID("decayModeFindingNewDMs"));
+    //std::cout << "decayModeFindingNewDMs"  << tau->tauID("decayModeFindingNewDMs")  << std::endl;
 
     disc_chargedIsoPtSum.push_back(tau->tauID("chargedIsoPtSum"));
     disc_neutralIsoPtSum.push_back(tau->tauID("neutralIsoPtSum"));
@@ -155,6 +162,8 @@ void hpstauInfo::SetBranches(){
   AddBranch(&disc_byLooseIsolationMVA3oldDMwLT ,"disc_byLooseIsolationMVA3oldDMwLT");
   AddBranch(&disc_decayModeFinding ,"disc_decayModeFinding");
   AddBranch(&disc_byVLooseIsolationMVArun2v1DBnewDMwLT,"disc_byVLooseIsolationMVArun2v1DBnewDMwLT");
+  AddBranch(&disc_byCombinedIsolationDeltaBetaCorr3Hits, "disc_byCombinedIsolationDeltaBetaCorr3Hits");
+  AddBranch(&disc_decayModeFindingNewDMs ,"disc_decayModeFindingNewDMs");
 
   if (tau_extra){
     AddBranch(&taupt  ,"taupt");
@@ -216,11 +225,12 @@ void hpstauInfo::SetBranches(){
     AddBranch(&disc_byVTightIsolationMVA3oldDMwoLT ,"disc_byVTightIsolationMVA3oldDMwoLT");
     AddBranch(&disc_byVVTightIsolationMVA3oldDMwoLT ,"disc_byVVTightIsolationMVA3oldDMwoLT");
 
+    //AddBranch(&disc_byCombinedIsolationDeltaBetaCorr3Hits, "disc_byCombinedIsolationDeltaBetaCorr3Hits");
     AddBranch(&disc_byLooseCombinedIsolationDeltaBetaCorr3Hits ,"disc_byLooseCombinedIsolationDeltaBetaCorr3Hits");
     AddBranch(&disc_byMediumCombinedIsolationDeltaBetaCorr3Hits ,"disc_byMediumCombinedIsolationDeltaBetaCorr3Hits");
     AddBranch(&disc_byTightCombinedIsolationDeltaBetaCorr3Hits ,"disc_byTightCombinedIsolationDeltaBetaCorr3Hits");
 
-    AddBranch(&disc_decayModeFindingNewDMs ,"disc_decayModeFindingNewDMs");
+//    AddBranch(&disc_decayModeFindingNewDMs ,"disc_decayModeFindingNewDMs");
 
     AddBranch(&disc_chargedIsoPtSum ,"disc_chargedIsoPtSum");
     AddBranch(&disc_neutralIsoPtSum ,"disc_neutralIsoPtSum");
@@ -303,6 +313,8 @@ void hpstauInfo::Clear(){
   disc_byVTightIsolationMVA3oldDMwoLT.clear();
   disc_byVVTightIsolationMVA3oldDMwoLT.clear();
 
+
+  disc_byCombinedIsolationDeltaBetaCorr3Hits.clear();
   disc_byLooseCombinedIsolationDeltaBetaCorr3Hits.clear();
   disc_byMediumCombinedIsolationDeltaBetaCorr3Hits.clear();
   disc_byTightCombinedIsolationDeltaBetaCorr3Hits.clear();

@@ -114,7 +114,8 @@ class hpstauInfo : public baseTree{
   std::vector<bool> disc_byTightIsolationMVA3oldDMwoLT;
   std::vector<bool> disc_byVTightIsolationMVA3oldDMwoLT;
   std::vector<bool> disc_byVVTightIsolationMVA3oldDMwoLT;
-  		    
+  		   
+  std::vector<float> disc_byCombinedIsolationDeltaBetaCorr3Hits; 
   std::vector<bool> disc_byLooseCombinedIsolationDeltaBetaCorr3Hits;
   std::vector<bool> disc_byMediumCombinedIsolationDeltaBetaCorr3Hits;
   std::vector<bool> disc_byTightCombinedIsolationDeltaBetaCorr3Hits;
