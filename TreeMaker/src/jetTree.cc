@@ -623,7 +623,7 @@ jetTree::Fill(const edm::Event& iEvent, edm::EventSetup const& iSetup){
       float SubJet_csv_ = -1.0;
       for ( auto const & it : sdSubjetsPuppi ) {
 	subjetSDCSV_puppi_tmp.push_back(it->bDiscriminator("pfCombinedInclusiveSecondaryVertexV2BJetTags"));
-	SubJet_csv_                    = *(std::max_element(subjetSDCSV_puppi_tmp.begin(), subjetSDCSV_puppi_tmp.end()));
+	SubJet_csv_                    = *(std::min_element(subjetSDCSV_puppi_tmp.begin(), subjetSDCSV_puppi_tmp.end()));
 	if ((SubJet_csv_ < -1) || (SubJet_csv_ > 1)) SubJet_csv_ = -1;
       }
       double double_CA15 = mJetBoostedBtaggingMVACalc.mvaValue(
